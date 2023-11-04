@@ -24,6 +24,7 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 	return toEncrypt, encoding, message
 }
 
+// REVERSE ALPHABET ENCRYPTION AND DECRYPTION
 // Spliting input in to runes and reversing them with ReverseAlphabetValue
 func reverseString(input string) string {
 	// Convert the string to a slice of runes
@@ -39,7 +40,6 @@ func reverseString(input string) string {
 
 	// Convert the reversed runes into to a string
 	reversedString := string(runes)
-
 	return reversedString
 }
 
@@ -47,4 +47,32 @@ func reverseString(input string) string {
 func ReverseAlphabetValue(ch rune) rune {
 	reversing := rune('z' - (ch - 'a'))
 	return reversing
+}
+
+// ROT13 ENCRYPTION / DECRYPTION
+func rot13Encryption(input string) string {
+	// Convert the string to a slice of runes
+	runes := []rune(input)
+
+	// Reverse each rune using the ReverseAlphabetValue()
+	for i := 0; i < len(runes); i++ {
+		//skip uppercases and other characters beside a-z
+		if 'a' <= runes[i] && runes[i] <= 'z' {
+			runes[i] = shiftBy(runes[i])
+		}
+	}
+
+	// Convert the reversed runes into to a string
+	reversedString := string(runes)
+	return reversedString
+}
+
+func shiftBy(r rune) rune {
+	step := 13
+	index := int(r - 'a')
+	// shifting index
+	shiftedIndex := (index + step) % 26
+	//shifting rune
+	shiftedRune := rune('a' + shiftedIndex)
+	return shiftedRune
 }
