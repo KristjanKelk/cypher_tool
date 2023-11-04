@@ -24,7 +24,6 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 	return toEncrypt, encoding, message
 }
 
-// At the moment it works only with lowercase
 // Spliting input in to runes and reversing them with ReverseAlphabetValue
 func reverseString(input string) string {
 	// Convert the string to a slice of runes
@@ -32,7 +31,10 @@ func reverseString(input string) string {
 
 	// Reverse each rune using the ReverseAlphabetValue()
 	for i := 0; i < len(runes); i++ {
-		runes[i] = ReverseAlphabetValue(runes[i])
+		//skip uppercases and other characters beside a-z
+		if 'a' <= runes[i] && runes[i] <= 'z' {
+			runes[i] = ReverseAlphabetValue(runes[i])
+		}
 	}
 
 	// Convert the reversed runes into to a string
