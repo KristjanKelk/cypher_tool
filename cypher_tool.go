@@ -85,7 +85,7 @@ func ReverseAlphabetValue(ch rune) rune {
 }
 
 // ROT13 ENCRYPTION / DECRYPTION
-func rot13Cryption(input string, encryption bool) string {
+func rot13Cryption(input string, toEncrypt bool) string {
 	// Convert the string to a slice of runes
 	runes := []rune(input)
 
@@ -93,7 +93,7 @@ func rot13Cryption(input string, encryption bool) string {
 	for i := 0; i < len(runes); i++ {
 		// Skip characters other than 'a' to 'z'
 		if 'a' <= runes[i] && runes[i] <= 'z' {
-			runes[i] = shiftBy(runes[i], encryption)
+			runes[i] = shiftBy(runes[i], toEncrypt)
 		}
 	}
 
@@ -102,9 +102,9 @@ func rot13Cryption(input string, encryption bool) string {
 	return reversedString
 }
 
-func shiftBy(r rune, encryption bool) rune {
+func shiftBy(r rune, toEncrypt bool) rune {
 	step := 13
-	if !encryption {
+	if !toEncrypt {
 		step = -step // If decryption, reverse the step
 	}
 	index := int(r - 'a')
@@ -116,8 +116,8 @@ func shiftBy(r rune, encryption bool) rune {
 }
 
 // CUSTOM ENCRYPTION AND DECRYPTION
-func customEncDec(input string, encryption bool) string {
-	if encryption == true {
+func customEncDec(input string, toEncrypt bool) string {
+	if toEncrypt == true {
 		// Reverse alphabet encryption, then ROT13 encryption
 		encryptedString := reverseString(input)
 		encryptedString = rot13Cryption(encryptedString, true)
