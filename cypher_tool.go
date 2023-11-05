@@ -80,3 +80,25 @@ func shiftBy(r rune, encryption bool) rune {
 	shiftedRune := rune('a' + shiftedIndex)
 	return shiftedRune
 }
+
+// CUSTOM ENCRYPTION AND DECRYPTION
+func hybridEncryption(input string, encryption bool) string {
+	// First, apply the reverse alphabet encryption
+	encryptedString := reverseString(input)
+
+	// Then, apply ROT13 encryption (or decryption if needed)
+	encryptedString = rot13Cryption(encryptedString, encryption)
+
+	return encryptedString
+}
+
+// Hybrid Decryption
+func hybridDecryption(input string) string {
+	// First, apply ROT13 decryption
+	decryptedString := rot13Cryption(input, false)
+
+	// Then, apply reverse alphabet decryption
+	decryptedString = reverseString(decryptedString)
+
+	return decryptedString
+}
