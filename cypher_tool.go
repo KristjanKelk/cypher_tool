@@ -3,7 +3,15 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(getInput())
+	toEncrypt, encoding, message := getInput()
+	if encoding == "1" {
+		fmt.Println(rot13Cryption(message, toEncrypt))
+	} else if encoding == "2" {
+		fmt.Println(reverseString(message))
+	} else {
+		fmt.Println(customEncDec(message, toEncrypt))
+	}
+
 }
 
 // INPUT AND OUTPUT
@@ -17,11 +25,19 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 		toEncrypt = true
 	} else if SelectOp == 2 {
 		toEncrypt = false
+	} else {
+		fmt.Println("Incorrect input, please try again")
+		getInput()
 	}
-	fmt.Println("Select cypher (1/2):\n 1. ROT13. \n 2. Reverse")
+	fmt.Println("Select cypher (1/2/3):\n 1. ROT13. \n 2. Reverse \n 3. CustomCipher")
 	fmt.Scan(&encoding)
-	fmt.Println("Enter the message:")
-	fmt.Scan(&message)
+	if encoding == "1" || encoding == "2" || encoding == "3" {
+		fmt.Println("Enter the message:")
+		fmt.Scan(&message)
+	} else {
+		fmt.Println("Incorrect input, please try again")
+		getInput()
+	}
 	return toEncrypt, encoding, message
 }
 
