@@ -1,0 +1,25 @@
+Cypher Tool
+
+The Cypher Tool is a simple command-line utility that allows you to perform various text encryption and decryption operations. It provides three different cypher methods:
+
+ROT13 Encryption/Decryption: This method rotates each letter by 13 positions in the alphabet. It's a simple letter substitution that's easily reversible.
+
+Reverse Alphabet Encryption/Decryption: This method reverses the letters of the alphabet in the input text. It's a basic letter reversal operation.
+
+Custom Encryption/Decryption: This method combines the reverse alphabet and ROT13 encryption methods. First, it reverses the alphabet, and then it applies ROT13 encryption on the reversed text.
+
+Usage
+To use the Cypher Tool, follow these steps:
+
+Run the program.
+Select the operation (Encrypt or Decrypt) by entering 1 or 2.
+Select the cypher method (ROT13, Reverse, or CustomCipher) by entering 1, 2, or 3.
+Enter the text message you want to encrypt or decrypt, including spaces.
+
+The Cypher Tool will perform the selected operation and display the result.
+
+Getting Started
+To run the Cypher Tool, you need Go installed on your system. Clone the repository and execute the cypher_tool.go file with Go.
+
+
+go run cypher_tool.go
