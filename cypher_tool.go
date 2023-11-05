@@ -43,6 +43,7 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 	if encoding == "1" || encoding == "2" || encoding == "3" {
 		fmt.Println("Enter the message:")
 		message = getMessage()
+		// function call for text input
 	} else {
 		fmt.Println("Incorrect input, please try again")
 		getInput()
@@ -57,6 +58,7 @@ func getMessage() string {
 		return scanner.Text()
 	}
 	return ""
+	// Used the bafio library and os to enter the code with spaces, since fmt.Scan does not allow for this
 }
 
 // REVERSE ALPHABET ENCRYPTION AND DECRYPTION
