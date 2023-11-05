@@ -6,6 +6,7 @@ func main() {
 	fmt.Println(getInput())
 }
 
+// INPUT AND OUTPUT
 func getInput() (toEncrypt bool, encoding string, message string) {
 	fmt.Println("Welcome to the Cypher Tool!")
 	// Command for output of the welcome phrase
@@ -24,6 +25,7 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 	return toEncrypt, encoding, message
 }
 
+// REVERSE ALPHABET ENCRYPTION AND DECRYPTION
 // Spliting input in to runes and reversing them with ReverseAlphabetValue
 func reverseString(input string) string {
 	// Convert the string to a slice of runes
@@ -39,7 +41,6 @@ func reverseString(input string) string {
 
 	// Convert the reversed runes into to a string
 	reversedString := string(runes)
-
 	return reversedString
 }
 
@@ -47,4 +48,35 @@ func reverseString(input string) string {
 func ReverseAlphabetValue(ch rune) rune {
 	reversing := rune('z' - (ch - 'a'))
 	return reversing
+}
+
+// ROT13 ENCRYPTION / DECRYPTION
+func rot13Cryption(input string, encryption bool) string {
+	// Convert the string to a slice of runes
+	runes := []rune(input)
+
+	// Reverse each rune using the shiftBy function
+	for i := 0; i < len(runes); i++ {
+		// Skip characters other than 'a' to 'z'
+		if 'a' <= runes[i] && runes[i] <= 'z' {
+			runes[i] = shiftBy(runes[i], encryption)
+		}
+	}
+
+	// Convert the reversed runes into a string
+	reversedString := string(runes)
+	return reversedString
+}
+
+func shiftBy(r rune, encryption bool) rune {
+	step := 13
+	if !encryption {
+		step = -step // If decryption, reverse the step
+	}
+	index := int(r - 'a')
+	// Shifting index
+	shiftedIndex := (index + step + 26) % 26 // Ensure the result is non-negative
+	// Shifting rune
+	shiftedRune := rune('a' + shiftedIndex)
+	return shiftedRune
 }
