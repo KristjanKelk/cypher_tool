@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
 	toEncrypt, encoding, message := getInput()
@@ -38,13 +42,21 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 	fmt.Scan(&encoding)
 	if encoding == "1" || encoding == "2" || encoding == "3" {
 		fmt.Println("Enter the message:")
-		fmt.Scan(&message)
+		message = getMessage()
 	} else {
 		fmt.Println("Incorrect input, please try again")
 		getInput()
 	}
 	return toEncrypt, encoding, message
 	// Returns the entered data to the main function
+}
+
+func getMessage() string {
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		return scanner.Text()
+	}
+	return ""
 }
 
 // REVERSE ALPHABET ENCRYPTION AND DECRYPTION
