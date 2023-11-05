@@ -6,10 +6,13 @@ func main() {
 	toEncrypt, encoding, message := getInput()
 	if encoding == "1" {
 		fmt.Println(rot13Cryption(message, toEncrypt))
+		// Command to call the encryption/decription function 1 and output the final code
 	} else if encoding == "2" {
 		fmt.Println(reverseString(message))
+		// Command to call the encryption/decription function 2 and output the final code
 	} else {
 		fmt.Println(customEncDec(message, toEncrypt))
+		// Command to call the encryption/decription function 3 and output the final code
 	}
 
 }
@@ -21,6 +24,7 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 	fmt.Println("Select operation (1/2):\n 1. Encrypt. \n 2. Decrypt.")
 	var SelectOp int
 	fmt.Scan(&SelectOp)
+	// Command for choose Encrypt or Decrypt
 	if SelectOp == 1 {
 		toEncrypt = true
 	} else if SelectOp == 2 {
@@ -29,6 +33,7 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 		fmt.Println("Incorrect input, please try again")
 		getInput()
 	}
+	// Logic by which the toEncrypt variable is assigned true or false, also if the user enters incorrect data, the program is started again
 	fmt.Println("Select cypher (1/2/3):\n 1. ROT13. \n 2. Reverse \n 3. CustomCipher")
 	fmt.Scan(&encoding)
 	if encoding == "1" || encoding == "2" || encoding == "3" {
@@ -39,6 +44,7 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 		getInput()
 	}
 	return toEncrypt, encoding, message
+	// Returns the entered data to the main function
 }
 
 // REVERSE ALPHABET ENCRYPTION AND DECRYPTION
